@@ -2,8 +2,11 @@ import numpy as np
 from numpy import *
 import subprocess
 import ray
-ray.init()
 
+#inicializacion de ray
+ray.init(num_cpus=8)
+
+#funcion para escribir un documento
 def writeinputf(file,dictionary):
     ''' write dictionarys parameters in file'''
     data1 = open(file,'w')
@@ -12,6 +15,7 @@ def writeinputf(file,dictionary):
 
     data1.close()
 
+#funciones a paralelizar (usan micrOMEGAS 5.2)
 @ray.remote
 def proceso1():
     newlist1=[ ]
